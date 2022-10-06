@@ -14,6 +14,7 @@ private:
 public:
 	Item();
 	Item(string name, string description, float weight, float buyingCost);
+	~Item();
 
 	string GetName();
 	string GetDescription();

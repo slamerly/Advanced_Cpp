@@ -24,24 +24,10 @@ Weapon::~Weapon()
 {
 }
 
-/*
-string Weapon::GetName()
-{
-	return mName;
-}
-*/
-
 float Weapon::GetDamages()
 {
 	return mDamages;
 }
-
-/*
-float Weapon::GetBuyingCost()
-{
-	return mBuyingCost;
-}
-*/
 
 float Weapon::GetDurability()
 {

@@ -12,7 +12,7 @@ Creature::Creature()
 	mDefense = 10;
 }
 
-Creature::Creature(string name, string description, float healthPoints, float defense)
+Creature::Creature(string name, string description, int healthPoints, int defense)
 {
 	mName = name;
 	mDescription = description;
@@ -24,13 +24,40 @@ Creature::Creature(string name, string description, float healthPoints, float de
 		cout << defense << " not between 1 to 20.\n";
 }
 
-Creature::Creature(string name, string description, float healthPoints, vector<Attack*> attacks, float defense)
+Creature::Creature(string name, string description, int healthPoints, vector<Attack*> attacks, int defense)
 {
 	mName = name;
 	mDescription = description;
 	mHealthPoints = healthPoints;
 	mMaxHealthPoints = healthPoints;
 	mAttacks = attacks;
+	if (defense > 0 && defense <= 20)
+		mDefense = defense;
+	else
+		cout << defense << " not between 1 to 20.\n";
+}
+
+Creature::Creature(string name, string description, int healthPoints, vector<Item*> inventory, int defense)
+{
+	mName = name;
+	mDescription = description;
+	mHealthPoints = healthPoints;
+	mMaxHealthPoints = healthPoints;
+	mInventory = inventory;
+	if (defense > 0 && defense <= 20)
+		mDefense = defense;
+	else
+		cout << defense << " not between 1 to 20.\n";
+}
+
+Creature::Creature(string name, string description, int healthPoints, vector<Attack*> attacks, vector<Item*> inventory, int defense)
+{
+	mName = name;
+	mDescription = description;
+	mHealthPoints = healthPoints;
+	mMaxHealthPoints = healthPoints;
+	mAttacks = attacks;
+	mInventory = inventory;
 	if (defense > 0 && defense <= 20)
 		mDefense = defense;
 	else
@@ -65,6 +92,15 @@ void Creature::AttackCreature(Creature* target, Attack* attack)
 		// --- DEAD ---
 		if (target->mHealthPoints <= 0)
 		{
+			while (!target->mInventory.empty())
+			{
+				Item* save = target->mInventory.back();
+				target->mInventory.pop_back();
+				mInventory.push_back(save);
+			}
+
+			cout << target->GetName() << " is dead.\n";
+
 			cout << target->GetName() << " is dead.\n";
 		}
 		else
@@ -74,7 +110,7 @@ void Creature::AttackCreature(Creature* target, Attack* attack)
 		cout << "It misses.\n";
 }
 
-void Creature::Heal(float amount)
+void Creature::Heal(int amount)
 {
 	if (mHealthPoints == mMaxHealthPoints)
 		cout << "HP MAX!\n";
@@ -97,17 +133,17 @@ string Creature::GetDescription()
 	return mDescription;
 }
 
-float Creature::GetHealthPoints()
+int Creature::GetHealthPoints()
 {
 	return mHealthPoints;
 }
 
-float Creature::GetMaxHealthPoints()
+int Creature::GetMaxHealthPoints()
 {
 	return mMaxHealthPoints;
 }
 
-float Creature::GetDefence()
+int Creature::GetDefence()
 {
 	return mDefense;
 }
@@ -117,14 +153,24 @@ int Creature::GetTotalDamage()
 	return mTotalDamage;
 }
 
+size_t Creature::GetNbLoot()
+{
+	return mInventory.size();
+}
+
 void Creature::SetDescription(string description)
 {
 	mDescription = description;
 }
 
-void Creature::SetHealthPoints(float healthPoints)
+void Creature::SetHealthPoints(int healthPoints)
 {
 	mHealthPoints = healthPoints;
+}
+
+void Creature::SetMaxHealthPoints(int maxHealthPoints)
+{
+	mMaxHealthPoints = maxHealthPoints;
 }
 
 void Creature::AddAttack(Attack* attack)
@@ -148,7 +194,7 @@ void Creature::RemoveAttack(Attack* attack)
 		cout << "Attack not found" << endl;
 }
 
-void Creature::SetDefence(float defence)
+void Creature::SetDefence(int defence)
 {
 	mDefense = defence;
 }
@@ -156,4 +202,28 @@ void Creature::SetDefence(float defence)
 void Creature::SetTotalDamage(int damage)
 {
 	mTotalDamage = damage;
+}
+
+void Creature::AddItem(Item* item)
+{
+	mInventory.push_back(item);
+	cout << "Add " << item->GetName() << " to " << GetName() << endl;
+}
+
+void Creature::RemoveItem(Item* item)
+{
+	int position = -1;
+	for (int i = 0; i < mInventory.size(); i++)
+	{
+		if (mInventory[i]->GetName() == item->GetName())
+			position = i;
+	}
+
+	if (position >= 0)
+	{
+		mInventory.erase(mInventory.begin() + position);
+		cout << "Remove " << item->GetName() << " from " << GetName() << endl;
+	}
+	else
+		cout << "Item not found" << endl;
 }

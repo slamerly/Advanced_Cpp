@@ -22,7 +22,7 @@ public:
 
 	string GetName();
 	float GetMoney();
-	int GetNbWeapon();
+	size_t GetNbWeapon();
 	bool WeaponInInventory(Weapon* weapon);
 
 	void AddMoney(float money);

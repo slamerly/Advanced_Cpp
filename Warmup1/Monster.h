@@ -7,19 +7,18 @@ class Monster :
     public Creature
 {
 private:
-    vector<Item*> mLoot;
+    //vector<Item*> mLoot;
 
 public:
     Monster();
-    Monster(string name, string description, float healthPoints, float defence);
-    Monster(string name, string description, float healthPoints, float defence, vector<Item*> loot);
-    Monster(string name, string description, float healthPoints, vector<Attack*> attacks, float defence);
-    Monster(string name, string description, float healthPoints, vector<Attack*> attacks, float defence, vector<Item*> loot);
+    Monster(string name, string description, int healthPoints, int defence);
+    Monster(string name, string description, int healthPoints, int defence, vector<Item*> loot);
+    Monster(string name, string description, int healthPoints, vector<Attack*> attacks, int defence);
+    Monster(string name, string description, int healthPoints, vector<Attack*> attacks, int defence, vector<Item*> loot);
     ~Monster();
 
-    void AttackCreature(Creature* target, Attack* attack);
     void AttackCreature(Monster* target, Attack* attack);
-    void AddItem(Item* item);
-    void RemoveItem(Item* item);
+    //void AddItem(Item* item);
+    //void RemoveItem(Item* item);
 };
 

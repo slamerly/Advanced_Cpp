@@ -2,6 +2,7 @@
 #include "Item.h"
 #include "IMagic.h"
 #include "Creature.h"
+#include "MagicType.h"
 
 class MagicItem:
 	public Item, IMagic
@@ -9,20 +10,20 @@ class MagicItem:
 private:
 	string mMagicName;
 	string mMagicDescription;
-	bool mPositive;
+	MagicType mMagicType;
 	int mMagicDamage; //1 to 5
 
 public:
 	MagicItem();
-	MagicItem(string name, string description, string magicName, string magicDescription, bool positive, int magicDamage, float weight, float buyingCost);
+	MagicItem(string name, string description, string magicName, string magicDescription, MagicType magicType, int magicDamage, float weigth, float buyingCost);
 
 	string GetMagicName();
 	string GetMagicDescription();
-	bool GetPositive();
 	int GetMagicDamage();
+	MagicType GetMagicType();
 
-	void SetPositive(bool positive);
+	void SetMagicType(MagicType magicType);
 	void SetMagicDamage(int magicDamage);
-	void HealthPointsInteraction(Creature* creature);
+	void MagicEffectActivation(Creature* creature);
 };
 

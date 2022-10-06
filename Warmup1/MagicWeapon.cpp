@@ -1,19 +1,23 @@
 #include "MagicWeapon.h"
+#include <iostream>
 
-MagicWeapon::MagicWeapon():
+MagicWeapon::MagicWeapon() :
 	Weapon()
 {
 	mMagicName = "";
 	mMagicDescription = "";
-	mPositive = false;
+	mMagicDamage = 1;
 }
 
-MagicWeapon::MagicWeapon(string name, string description, string magicName, string magicDescription, bool positive, WeaponType type, float weigth, float damages, float buyingCost, float durability):
+MagicWeapon::MagicWeapon(string name, string description, string magicName, string magicDescription, int magicDamage, WeaponType type, float weigth, float damages, float buyingCost, float durability) :
 	Weapon(name, description, type, weigth, damages, buyingCost, durability)
 {
 	mMagicName = magicName;
 	mMagicDescription = magicDescription;
-	mPositive = positive;
+	if (magicDamage > 0 && magicDamage <= 5)
+		mMagicDamage = magicDamage;
+	else
+		cout << "Magic damages: " << magicDamage << " is not between 1 and 5." << endl;
 }
 
 MagicWeapon::~MagicWeapon()
@@ -30,19 +34,9 @@ string MagicWeapon::GetMagicDescription()
 	return mMagicDescription;
 }
 
-bool MagicWeapon::GetPositive()
-{
-	return mPositive;
-}
-
 int MagicWeapon::GetMagicDamage()
 {
 	return mMagicDamage;
-}
-
-void MagicWeapon::SetPositive(bool positive)
-{
-	mPositive = positive;
 }
 
 void MagicWeapon::SetMagicDamage(int magicDamage)
@@ -50,14 +44,7 @@ void MagicWeapon::SetMagicDamage(int magicDamage)
 	mMagicDamage = magicDamage;
 }
 
-void MagicWeapon::HealthPointsInteraction(Creature* creature)
+void MagicWeapon::MagicEffectActivation(Creature* creature)
 {
-	if (mPositive)
-	{
-		creature->SetTotalDamage(creature->GetTotalDamage() + mMagicDamage);
-	}
-	else
-	{
-		creature->Heal(mMagicDamage);
-	}
+	creature->SetTotalDamage(creature->GetTotalDamage() + mMagicDamage);
 }

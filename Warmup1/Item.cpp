@@ -16,6 +16,10 @@ Item::Item(string name, string description, float weight, float buyingCost)
 	mBuyingCost = buyingCost;
 }
 
+Item::~Item()
+{
+}
+
 string Item::GetName()
 {
 	return mName;

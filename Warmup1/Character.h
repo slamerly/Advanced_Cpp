@@ -12,24 +12,16 @@ using namespace std;
 class Character :
 	public Creature{
 private:
-	//string mFirstName;
-	//string mLastName;
 	string mCatchphrase;
 	float mMoney;
-	//float mLifePoints;
 	Weapon* mWeapon;
 	Race mRace;
 	CharacterClass mCharacterClass;
 
 public:
-	/*
-	Character(string fName, string lName);
-	Character(string fName, string lName, string catchphrase, float money, float lifePoints, Race race, CharacterClass characterClass);
-	Character(string fName, string lName, string catchphrase, float money, float lifePoints, Weapon &weapon, Race race, CharacterClass characterClass);
-	*/
 	Character();
-	Character(string name, string description, string catchphrase, float healthPoints, float money, Weapon* weapon, float defence, Race race, CharacterClass characterClass);
-	Character(string name, string description, string catchphrase, float healthPoints, float money, Weapon* weapon, vector<Attack*> attacks, float defence, Race race, CharacterClass characterClass);
+	Character(string name, string description, string catchphrase, int healthPoints, float money, Weapon* weapon, int defence, Race race, CharacterClass characterClass);
+	Character(string name, string description, string catchphrase, int healthPoints, float money, Weapon* weapon, vector<Attack*> attacks, int defence, Race race, CharacterClass characterClass);
 	~Character();
 	
 
@@ -42,5 +34,4 @@ public:
 	void Introduce();
 	void Buy(Weapon* weapon, Merchant* merchant);
 	void Sell(Merchant* merchant);
-	//void UseWeapon(Weapon* weapon, Character* targetCharacter);
 };

@@ -10,32 +10,39 @@ class Creature
 private:
 	string mName;
 	string mDescription;
-	float mHealthPoints;
-	float mMaxHealthPoints;
+	int mHealthPoints;
+	int mMaxHealthPoints;
 	int mTotalDamage = 2;
 	vector<Attack*> mAttacks;
-	float mDefense; // 1 to 20
+	vector<Item*> mInventory;
+	int mDefense; // 1 to 20
 
 public:
 	Creature();
-	Creature(string name, string description, float healthPoints, float defense);
-	Creature(string name, string description, float healthPoints, vector<Attack*> attacks, float defense);
+	Creature(string name, string description, int healthPoints, int defense);
+	Creature(string name, string description, int healthPoints, vector<Attack*> attacks, int defense);
+	Creature(string name, string description, int healthPoints, vector<Item*> inventory, int defense);
+	Creature(string name, string description, int healthPoints, vector<Attack*> attacks, vector<Item*> inventory, int defense);
 	~Creature();
 
 	void AttackCreature(Creature* target, Attack* attack);
-	void Heal(float amount);
+	void Heal(int amount);
 
 	string GetName();
 	string GetDescription();
-	float GetHealthPoints();
-	float GetMaxHealthPoints();
-	float GetDefence();
+	int GetHealthPoints();
+	int GetMaxHealthPoints();
+	int GetDefence();
 	int GetTotalDamage();
+	size_t GetNbLoot();
 
 	void SetDescription(string description);
-	void SetHealthPoints(float healthPoints);
+	void SetHealthPoints(int healthPoints);
+	void SetMaxHealthPoints(int maxHealthPoints);
 	void AddAttack(Attack* attack);
 	void RemoveAttack(Attack* attack);
-	void SetDefence(float defence);
+	void SetDefence(int defence);
 	void SetTotalDamage(int damage);
+	void AddItem(Item* item);
+	void RemoveItem(Item* item);
 };

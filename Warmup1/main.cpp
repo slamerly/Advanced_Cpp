@@ -48,9 +48,9 @@ int main()
 
 
     // WARMUP 2
-    Weapon weapon1 = Weapon("waaaaaaaaa", Sword, 1, 110, 1, 1);
-    Weapon weapon2 = Weapon("Not an ax", Staff, 2, 9, 30, 1);
-    Weapon weapon3 = Weapon("No", Bow, 1.5f, 9, 20, 1);
+    Weapon weapon1 = Weapon("waaaaaaaaa", "An orc make it", Sword, 1, 110, 1, 1);
+    Weapon weapon2 = Weapon("Not an ax", "Yes is not an ax", Staff, 2, 9, 30, 1);
+    Weapon weapon3 = Weapon("No", "Yes", Bow, 1.5f, 9, 20, 1);
 
     Character character1 = Character("Jack Sparrow", "Junk pirate", "Why Fight When You Can Negotiate?", 100, 100, nullptr, 15, Gobelin, Priest);
     Character character2 = Character("Obi-Wan Kenobi", "BBQ master", "Hello there!", 150, 5000, &weapon1, 10, Human, Paladin);

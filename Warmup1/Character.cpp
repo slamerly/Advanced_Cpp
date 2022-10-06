@@ -4,44 +4,6 @@
 #include <iostream>
 
 using namespace std;
-// Warmup 1
-/*
-Character::Character(string fName, string lName)
-{
-	mFirstName = fName;
-	mLastName = lName;
-	mCatchphrase = "";
-	mMoney = 0;
-	mLifePoints = 100;
-	mWeapon = nullptr;
-	mRace = Human;
-	mCharacterClass = Less;
-}
-
-Character::Character(string fName, string lName, string catchphrase, float money, float lifePoints, Race race, CharacterClass characterClass)
-{
-	mFirstName = fName;
-	mLastName = lName;
-	mCatchphrase = catchphrase;
-	mMoney = money;
-	mLifePoints = lifePoints;
-	mWeapon = nullptr;
-	mRace = race;
-	mCharacterClass = characterClass;
-}
-
-Character::Character(string fName, string lName, string catchphrase, float money, float lifePoints, Weapon &weapon, Race race, CharacterClass characterClass)
-{
-	mFirstName = fName;
-	mLastName = lName;
-	mCatchphrase = catchphrase;
-	mMoney = money;
-	mLifePoints = lifePoints;
-	mWeapon = &weapon;
-	mRace = race;
-	mCharacterClass = characterClass;
-}
-*/
 
 Character::Character():Creature()
 {
@@ -52,7 +14,7 @@ Character::Character():Creature()
 	mCharacterClass = Less;
 }
 
-Character::Character(string name, string description, string catchphrase, float healthPoints, float money, Weapon* weapon, float defence, Race race, CharacterClass characterClass) :
+Character::Character(string name, string description, string catchphrase, int healthPoints, float money, Weapon* weapon, int defence, Race race, CharacterClass characterClass) :
 	Creature(name, description, healthPoints, defence)
 {
 	mCatchphrase = catchphrase;
@@ -62,7 +24,7 @@ Character::Character(string name, string description, string catchphrase, float 
 	mCharacterClass = characterClass;
 }
 
-Character::Character(string name, string description, string catchphrase, float healthPoints, float money, Weapon* weapon, vector<Attack*> attacks, float defence, Race race, CharacterClass characterClass) :
+Character::Character(string name, string description, string catchphrase, int healthPoints, float money, Weapon* weapon, vector<Attack*> attacks, int defence, Race race, CharacterClass characterClass) :
 	Creature(name, description, healthPoints, attacks, defence)
 {
 	mCatchphrase = catchphrase;
@@ -204,38 +166,3 @@ void Character::Sell(Merchant* merchant)
 	else
 		cout << GetName() << " doesn't have weapon." << endl;
 }
-
-// Warmup 1
-/* 
-void Character::UseWeapon(Weapon* weapon, Character* targetCharacter)
-{
-	string answer;
-	if (targetCharacter->mLifePoints > 0) 
-	{
-		if (weapon->GetDurability() > 0) {
-			targetCharacter->mLifePoints -= weapon->GetDamages();
-			weapon->SetDurability(0.01f);
-
-			cout << targetCharacter->mLifePoints << endl;
-			if (targetCharacter->mLifePoints <= 0)
-			{
-				do
-				{
-					cout << "Loot " << targetCharacter->mFirstName << " " << targetCharacter->mLastName << " ?(y/n)" << endl;
-					cin >> answer;
-				} while (answer != "y" && answer != "n");
-				if (answer == "y")
-				{
-					AddMoney(targetCharacter->GetMoney());
-					if (targetCharacter->mWeapon != NULL)
-						SetWeapon(targetCharacter->mWeapon);
-				}
-			}
-		}
-		else
-		{
-			cout << weapon->GetName() << " is broken." << endl;
-		}
-	}
-}
-*/
