@@ -48,6 +48,11 @@ Weapon* Character::GetWeapon()
 	return mWeapon;
 }
 
+uint8_t Character::GetRace()
+{
+	return mRace;
+}
+
 void Character::AddMoney(float money)
 {
 	mMoney += money;

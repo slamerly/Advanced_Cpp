@@ -57,12 +57,14 @@ void Monster::AttackCreature(Monster* target, Attack* attack)
 			Monster* test = dynamic_cast<Monster*>(target); // return NULL if target is not a Monster
 			if (test != NULL)
 			{
+				/*
 				while (!target->mLoot.empty())
 				{
 					Item* save = target->mLoot.back();
 					target->mLoot.pop_back();
 					mLoot.push_back(save);
 				}
+				*/
 			}
 
 			cout << target->GetName() << " is dead.\n";

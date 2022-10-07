@@ -17,6 +17,8 @@ private:
 	vector<Item*> mInventory;
 	int mDefense; // 1 to 20
 
+	virtual void Polymorph() {};
+
 public:
 	Creature();
 	Creature(string name, string description, int healthPoints, int defense);
@@ -34,6 +36,7 @@ public:
 	int GetMaxHealthPoints();
 	int GetDefence();
 	int GetTotalDamage();
+	vector<Item*> GetInventory();
 	size_t GetNbLoot();
 
 	void SetDescription(string description);

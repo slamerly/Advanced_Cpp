@@ -2,6 +2,7 @@
 #include "Attack.h"
 #include <vector>
 #include <iostream>
+#include "Character.h"
 
 Creature::Creature()
 {
@@ -72,6 +73,7 @@ void Creature::AttackCreature(Creature* target, Attack* attack)
 {
 	int dice;
 	int pass = rand() % 20 + 1;
+	mTotalDamage = 2;
 
 	pass += attack->GetAttackBonus();
 
@@ -87,7 +89,11 @@ void Creature::AttackCreature(Creature* target, Attack* attack)
 		cout << "2 = " << mTotalDamage << endl;
 		target->mHealthPoints -= mTotalDamage;
 
-		//target->mHealthPoints -= attack->GetDamagePoints();
+		Character* isCharacter = dynamic_cast<Character*>(target);
+		if (isCharacter) 
+		{
+		}
+
 
 		// --- DEAD ---
 		if (target->mHealthPoints <= 0)
@@ -151,6 +157,11 @@ int Creature::GetDefence()
 int Creature::GetTotalDamage()
 {
 	return mTotalDamage;
+}
+
+vector<Item*> Creature::GetInventory()
+{
+	return mInventory;
 }
 
 size_t Creature::GetNbLoot()

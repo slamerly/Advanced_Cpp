@@ -3,5 +3,6 @@ enum MagicType {
 	Fire,
 	Ice,
 	Shield,
-	Heal
+	Heal,
+	NONE
 };

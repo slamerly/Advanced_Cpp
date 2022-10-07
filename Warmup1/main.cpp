@@ -119,4 +119,8 @@ int main()
 
     monster1.AddAttack(&attack1);
     monster2.AddAttack(&attack2);
+
+    cout << "\n\n---------------------- Battle ---------------------------\n\n";
+
+    character2.AttackCreature(&monster1, &attack1);
 }

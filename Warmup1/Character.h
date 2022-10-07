@@ -15,7 +15,7 @@ private:
 	string mCatchphrase;
 	float mMoney;
 	Weapon* mWeapon;
-	Race mRace;
+	uint8_t mRace;
 	CharacterClass mCharacterClass;
 
 public:
@@ -27,6 +27,9 @@ public:
 
 	float GetMoney();
 	Weapon* GetWeapon();
+	uint8_t GetRace();
+
+
 	void AddMoney(float money);
 	void RemoveMoney(float money);
 	void SetWeapon(Weapon* newWeapon);
